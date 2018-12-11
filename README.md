@@ -12,8 +12,6 @@ In `src`:
 * `kalman_filter.cpp` defines the Kalman Filter for Laser measurement and Extended Kalman Filter for Radar measurement.
 * `main.cpp` is the code to send messages to the simulator.
 * `tool.cpp` is the code to compute RMSE and Jacobian of the H matrix in EKF.
-In `build`:
-* `ExtendedKF` is the excuatable that complied from project code. You can run it by `./ExtendedKF`. 
 ### Dependencies
 * This project involve using an open source package called uWedSocketIO. You can install it on linux by `./install-ubuntu.sh` in this project folder.
 * You need this [simulator](https://github.com/udacity/self-driving-car-sim/releases/). After open it, select the EKF/UKF simulation. 
