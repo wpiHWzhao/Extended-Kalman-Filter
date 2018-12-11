@@ -6,6 +6,8 @@ using Eigen::VectorXd;
 // Please note that the Eigen library does not initialize 
 // VectorXd or MatrixXd objects with zeros upon creation.
 
+// KF and EKF is based on Wikipeida.
+
 KalmanFilter::KalmanFilter() {}
 
 KalmanFilter::~KalmanFilter() {}
@@ -32,12 +34,14 @@ void KalmanFilter::Update(const VectorXd &z) {
     long x_size = x_.size();
     MatrixXd I = MatrixXd::Identity(x_size,x_size);
     x_ = x_ + K * y;
-    P_ = (I-K*H_)*P_*(I-K*H_).transpose() + K*R_*K.transpose();
-    // P_ = (I-K*H_)*P_;
+    P_ = (I-K*H_)*P_*(I-K*H_).transpose() + K*R_*K.transpose(); // This is the algorithm on Wikipedia
+    // P_ = (I-K*H_)*P_; // This is algorithm instructed in the Udacity lecture.
 
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
+
+    // Convert to Cartesian space.
     double rho = sqrt(x_(0)*x_(0) + x_(1)*x_(1));
     double theta = atan2(x_(1), x_(0));
     double rho_dot = (x_(0)*x_(2)+x_(1)*x_(3))/rho;
